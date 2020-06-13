@@ -1,6 +1,6 @@
 ---
-title: Welcome to the Blog!
-date: "2018-07-01"
+title: STM32f429 + freeRTOS + touchGFX 
+date: "2020-06-01"
 featuredImage: './featured.jpg'
 ---
 
