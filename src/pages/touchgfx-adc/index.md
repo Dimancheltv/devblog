@@ -135,7 +135,7 @@ void Model::analogUpdate()
 
 ## Додамо у презентер Screen1Presenter.cpp код:
 
-```
+```c
 void Screen1Presenter::analogUpdate(uint32_t value)
 {
 	view.analogUpdate(value);
@@ -144,13 +144,13 @@ void Screen1Presenter::analogUpdate(uint32_t value)
 
 ## Додамо публічний віртуальний метод у файлі Screen1Presenter.hpp:
 
-```
+```c
 virtual void analogUpdate(uint32_t value);
 ```
 
 ## Додамо у Screen1View.cpp функцію:
 
-```
+```c
 void Screen1View::analogUpdate(uint32_t value)
 {
 	memset(&textAreaADBuffer, 0, TEXTAREAAD_SIZE);
@@ -161,7 +161,7 @@ void Screen1View::analogUpdate(uint32_t value)
 
 ## Screen1View.hpp додамо віртуальний метод:
 
-```
+```c
 #ifndef SCREEN1VIEW_HPP
 #define SCREEN1VIEW_HPP
 
@@ -182,4 +182,5 @@ protected:
 #endif // SCREEN1VIEW_HPP 
 ```
 
+## Компілюємо код та заливаємо у контролер
 

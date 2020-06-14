@@ -13,5 +13,5 @@ module.exports = {
     linkedin: 'https://ca.linkedin.com/in/',
   },
   pathPrefix: '/devblog',
-  siteUrl: '#',
+  siteUrl: 'https://brave-engineer.space/',
 };
