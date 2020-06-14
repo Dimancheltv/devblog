@@ -30,9 +30,153 @@ Welcome to the future, I hope you enjoy your stay! This is an example of how you
 
 ![Space](./Screenshot_3.jpg)
 
-Nam nec augue vel nisl placerat faucibus. Donec congue **nulla quis nunc** sagittis placerat. Pellentesque non tincidunt velit, cursus porttitor tellus. Suspendisse pulvinar tortor at _augue aliquam sagittis_. Duis non pulvinar augue. Ut tristique dignissim ligula, eget tempus diam molestie non. Nulla ultrices eleifend rutrum. Mauris convallis sollicitudin dui, pulvinar suscipit velit. Maecenas viverra finibus metus vitae blandit.
+## Налаштуємо freeRTOS
+1.  Створимо задачу taskAnalogInput
+2.  Створимо бінарний семафор binarySemAnalog 
 
-### Pellentesque consectetur facilisis venenatis
+![Space](./Screenshot_4.jpg)
+
+## Згенеруємо код CubeMX
+
+## Виносимо код за межі  main.c наприклад у файл analog.c
+
+```
+#include <analog.h>
+#include "main.h"
+#include "cmsis_os.h"
+
+extern ADC_HandleTypeDef hadc1;
+extern TIM_HandleTypeDef htim2;
+extern osSemaphoreId_t binarySemAnalogHandle;
+
+uint16_t uhADCxConvertedValue[10] = {0};
+
+void PollingInit()
+{
+	HAL_ADC_Start_DMA(&hadc1, &uhADCxConvertedValue, 10);
+	HAL_TIM_Base_Start_IT(&htim2);
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	osSemaphoreRelease(binarySemAnalogHandle);
+}
+```
+
+## Також створимо файл заголовок analog.h в якому пропишемо прототипи функцій
+
+```
+#ifndef INC_ANALOG_H_
+#define INC_ANALOG_H_
+
+void PollingInit();
+
+#endif /* INC_ANALOG_H_ */
+```
+
+## Добавимо нашу функції ініціалізації в завдання StartTaskAnalogInput у файлі main.c
+
+```
+/* USER CODE END Header_StartTaskAnalogInput */
+void StartTaskAnalogInput(void *argument)
+{
+  /* USER CODE BEGIN StartTaskAnalogInput */
+	PollingInit();
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartTaskAnalogInput */
+}
+```
+ 
+## Код для model.cpp (не забуваємо додати прототип функії в model.hpp)
+
+```
+#include <gui/model/Model.hpp>
+#include <gui/model/ModelListener.hpp>
+#include <cmsis_os2.h>
+
+extern osSemaphoreId_t binarySemAnalogHandle;
+extern uint16_t uhADCxConvertedValue[10];
+
+Model::Model() : modelListener(0)
+{
+
+}
+
+void Model::tick()
+{
+	if(binarySemAnalogHandle != NULL)
+	{
+		if(osSemaphoreAcquire(binarySemAnalogHandle, 100) == osOK)
+		{
+			analogUpdate();
+		}
+	}
+
+}
+
+void Model::analogUpdate()
+{
+	uint32_t sum = 0;
+	for(int i = 0; i < 10; i++)
+	{
+		sum += uhADCxConvertedValue[i];
+	}
+	modelListener->analogUpdate(sum / 10);
+}
+```
+
+## Додамо у презентер Screen1Presenter.cpp код:
+
+```
+void Screen1Presenter::analogUpdate(uint32_t value)
+{
+	view.analogUpdate(value);
+}
+```
+
+## Додамо публічний віртуальний метод у файлі Screen1Presenter.hpp:
+
+```
+virtual void analogUpdate(uint32_t value);
+```
+
+## Додамо у Screen1View.cpp функцію:
+
+```
+void Screen1View::analogUpdate(uint32_t value)
+{
+	memset(&textAreaADBuffer, 0, TEXTAREAAD_SIZE);
+	Unicode::snprintfFloat(textAreaADBuffer, sizeof(textAreaADBuffer), "%.3f", value * 0.000805664 ); // 3.3/4096 = 0.000805664
+	textAreaAD.invalidate();
+}
+```
+
+## Screen1View.hpp додамо віртуальний метод:
+
+```
+#ifndef SCREEN1VIEW_HPP
+#define SCREEN1VIEW_HPP
+
+#include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
+#include <gui/screen1_screen/Screen1Presenter.hpp>
+
+class Screen1View : public Screen1ViewBase
+{
+public:
+    Screen1View();
+    virtual ~Screen1View() {}
+    virtual void setupScreen();
+    virtual void tearDownScreen();
+    virtual void analogUpdate(uint32_t value);
+protected:
+};
+
+#endif // SCREEN1VIEW_HPP 
+```
 
 Nam ullamcorper, orci nec tempor hendrerit, lorem nunc laoreet diam, vel gravida sem mi quis augue. Nunc odio velit, facilisis quis dictum non, facilisis quis felis. Vivamus [elementum dapibus nibh](https://google.com), eget aliquet nunc luctus maximus. Sed finibus risus eget ultrices maximus. Aliquam commodo consectetur diam eget tristique. Nunc quis erat quis felis fringilla tempus. Cras tempor nibh dolor, ac lacinia lacus ultrices eu.
 
