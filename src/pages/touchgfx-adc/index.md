@@ -40,7 +40,7 @@ Welcome to the future, I hope you enjoy your stay! This is an example of how you
 
 ## Виносимо код за межі  main.c наприклад у файл analog.c
 
-```C 
+```C++ 
 #include <analog.h>
 #include "main.h"
 #include "cmsis_os.h"
@@ -65,7 +65,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 
 ## Також створимо файл заголовок analog.h в якому пропишемо прототипи функцій
 
-``` C
+``` c++
 #ifndef INC_ANALOG_H_
 #define INC_ANALOG_H_
 
@@ -76,7 +76,7 @@ void PollingInit();
 
 ## Добавимо нашу функції ініціалізації в завдання StartTaskAnalogInput у файлі main.c
 
-```
+```c
 /* USER CODE END Header_StartTaskAnalogInput */
 void StartTaskAnalogInput(void *argument)
 {
@@ -93,7 +93,7 @@ void StartTaskAnalogInput(void *argument)
  
 ## Код для model.cpp (не забуваємо додати прототип функії в model.hpp)
 
-```
+```c++
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
 #include <cmsis_os2.h>
