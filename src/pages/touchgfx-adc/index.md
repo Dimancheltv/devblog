@@ -40,7 +40,7 @@ Welcome to the future, I hope you enjoy your stay! This is an example of how you
 
 ## Виносимо код за межі  main.c наприклад у файл analog.c
 
-```
+```C 
 #include <analog.h>
 #include "main.h"
 #include "cmsis_os.h"
@@ -65,7 +65,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 
 ## Також створимо файл заголовок analog.h в якому пропишемо прототипи функцій
 
-```
+``` C
 #ifndef INC_ANALOG_H_
 #define INC_ANALOG_H_
 
