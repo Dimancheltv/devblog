@@ -8,14 +8,27 @@ Welcome to the future, I hope you enjoy your stay! This is an example of how you
 
 <!-- end -->
 
-## Lorem ipsum dolor sit amet, consectetur adipiscing elit
+## Активуємо аналого-цифровий перетворювач ADC1, канал IN0, фізично це 34 пін мікроконтроллера
 
-Sed urna justo, scelerisque consectetur pharetra vitae, facilisis vel diam. Maecenas auctor enim a volutpat mattis. Morbi sit amet turpis a purus ornare pellentesque sit amet et ipsum. Suspendisse imperdiet mi at felis aliquet, nec consectetur arcu dignissim. Sed vitae diam maximus, maximus diam ac, scelerisque mi.
+![Space](./Screenshot_1.jpg)
 
-*   Morbi sit amet turpis a purus
-*   Etiam tempor ultricies mi
-    *   Maecenas auctor enim a volutpat mattis
-*   Sed urna justo, scelerisque consectetur pharetra vitae
+Виставимо такі параметри роботи АЦП:
+1.  Scan conversion mode - Enabled
+2.  DMA Continuous Requests - Enabled
+3.  End of Conversion Selection - EOC flag at the end of all conversions
+4.  External Trigger Conversion Sourse - Timer 2 Trigger Out event 
+
+## Вмикаємо DMA (Mode: Circular)
+
+![Space](./Screenshot_2.jpg)
+
+## Активуємо таймер TIM2, channel1 - output compare no output
+Виставимо такі параметри роботи TIM2:
+1.  Prescaler - 10000-1
+2.  Counter Period  - 100-1
+3.  Trigger event selection - Update Event
+
+![Space](./Screenshot_3.jpg)
 
 Nam nec augue vel nisl placerat faucibus. Donec congue **nulla quis nunc** sagittis placerat. Pellentesque non tincidunt velit, cursus porttitor tellus. Suspendisse pulvinar tortor at _augue aliquam sagittis_. Duis non pulvinar augue. Ut tristique dignissim ligula, eget tempus diam molestie non. Nulla ultrices eleifend rutrum. Mauris convallis sollicitudin dui, pulvinar suscipit velit. Maecenas viverra finibus metus vitae blandit.
 
