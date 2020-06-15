@@ -4,7 +4,7 @@ date: "2020-06-01"
 featuredImage: './featured.jpg'
 ---
 
-Welcome to the future, I hope you enjoy your stay! This is an example of how you can control what excerpt shows up.
+В даній статті буде розглянуто приклад роботи з аналого-цифровим перетворювачем та tft-дисплеєм, за допомогою графічної бібліотеки touchGFX та операційної системи реального часу freeRTOS.
 
 <!-- end -->
 
