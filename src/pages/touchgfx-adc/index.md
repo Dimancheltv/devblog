@@ -7,7 +7,7 @@ featuredImage: './featured.jpg'
 В даній статті буде розглянуто приклад роботи з аналого-цифровим перетворювачем та tft-дисплеєм, за допомогою графічної бібліотеки touchGFX та операційної системи реального часу freeRTOS.
 ## Демонстраційне відео:
 
-<video>https://www.youtube.com/watch?v=mUPyw4Spywk</video>
+[![STM32f429 + freeRTOS + touchGFX ](http://img.youtube.com/vi/mUPyw4Spywk/0.jpg)](http://www.youtube.com/watch?v=mUPyw4Spywk "STM32f429 + freeRTOS + touchGFX ")
 
 <!-- end -->
 
