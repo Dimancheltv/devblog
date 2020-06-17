@@ -188,6 +188,6 @@ protected:
 
 [![STM32f429 + freeRTOS + touchGFX ](http://img.youtube.com/vi/mUPyw4Spywk/0.jpg)](http://www.youtube.com/watch?v=mUPyw4Spywk "STM32f429 + freeRTOS + touchGFX ")
 
-### Код на Github](https://github.com/Dimancheltv/touchgfx-adc)
+### [Код на Github](https://github.com/Dimancheltv/touchgfx-adc)
 
 
