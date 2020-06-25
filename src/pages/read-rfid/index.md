@@ -8,6 +8,8 @@ featuredImage: './featured.jpg'
 та rfid модуль RDM6300.
 <!-- end -->
 
+![Space](./rdm6300.jpg)
+
 ## Для початку відкриємо touchGFX Designer створимо новий проект. Додамо текстове поле textArea1. Далі для нього додамо wildcard і виставимо розмір буфера 15 байт.
 
 ![Space](./Screenshot_1.jpg)
