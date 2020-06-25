@@ -7,8 +7,8 @@ module.exports = {
   showShareButtons: true,
   postsPerPage: 5, // Required
   social: {
-    website: '#',
-    github: 'https://github.com/',
+    website: 'https://brave-engineer.space/',
+    github: 'https://github.com/Dimancheltv',
     twitter: 'https://twitter.com/',
     linkedin: 'https://ca.linkedin.com/in/',
   },
