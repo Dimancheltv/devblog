@@ -164,3 +164,6 @@ void Screen1View::uartMsgRdy()
 extern uint8_t uartMsgBuf[UART_BUF_SIZE];
 ```
 
+## Демонстраційне відео:
+
+[![Читання RFID-мітки (freeRTOS + touchGFX) ](https://img.youtube.com/vi/RopXT0X9rzg/0.jpg)](https://www.youtube.com/watch?v=RopXT0X9rzg "Читання RFID-мітки (freeRTOS + touchGFX) ")

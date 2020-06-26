@@ -192,7 +192,7 @@ void USB_Keyboard_SendString(char * s)
 
 ### Демонстраційне відео:
 
-[![STM32f429 + freeRTOS + touchGFX ](https://img.youtube.com/vi/mUPyw4Spywk/0.jpg)](http://www.youtube.com/watch?v=mUPyw4Spywk "STM32f429 + freeRTOS + touchGFX ")
+[![STM32F103 USB емулятор HID клавіатури ](https://img.youtube.com/vi/nGg-23UgKUw/0.jpg)](http://www.youtube.com/watch?v=nGg-23UgKUw "STM32F103 USB емулятор HID клавіатури  ")
 
 
 

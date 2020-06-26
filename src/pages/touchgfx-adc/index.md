@@ -1,6 +1,6 @@
 ---
 title: STM32f429 + freeRTOS + touchGFX 
-date: "2020-06-01"
+date: "2020-04-01"
 featuredImage: './featured.jpg'
 ---
 
